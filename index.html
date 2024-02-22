@@ -98,29 +98,10 @@
       <ul class="social-links">
          <li><a href="https://twitter.com/makiss8">Twitter</a></li>
       </ul>
-     <h4>Twitter Feed</h4>
+    <h4>Twitter Feed</h4>
 <div id="twitter-feed">
-  <!-- Placeholder for the latest tweet -->
+ <a class="twitter-timeline" data-width="230" data-height="500" data-theme="dark" href="https://twitter.com/cosmoshub?ref_src=twsrc%5Etfw">Tweets by cosmoshub</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
-
-<script>
-  // Function to fetch and display the latest tweet
-  async function fetchLatestTweet() {
-    const twitterWidget = document.getElementById('twitter-feed');
-    const twitterUsername = 'cosmoshub'; // Change this to the desired Twitter username
-
-    // Fetch the latest tweet using Twitter's oEmbed API
-    const response = await fetch(`https://publish.twitter.com/oembed?url=https://twitter.com/${twitterUsername}/latest`);
-    const tweetData = await response.json();
-
-    // Update the HTML of the Twitter feed div with the latest tweet
-    twitterWidget.innerHTML = tweetData.html;
-  }
-
-  // Call the function to fetch and display the latest tweet
-  fetchLatestTweet();
-</script>
-
     </div>
     <!--SIDEBAR END-->
   </div>
