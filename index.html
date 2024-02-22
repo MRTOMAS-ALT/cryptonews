@@ -32,6 +32,14 @@
   </div>
 </div>
 <!--HEADER END-->
+<!-- Displaying live crypto prices -->
+<div id="crypto-live-prices" style="overflow: hidden; white-space: nowrap;">
+  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+    <span id="btc-price">BTC: $0.00</span> |
+    <span id="eth-price">ETH: $0.00</span>
+  </marquee>
+</div>
+  
 <!--CONTENT-->
 <div id="content">
   <!--MAIN-CONTENT-->
@@ -122,5 +130,24 @@
 </script>
 <script type="text/javascript"> Cufon.now(); </script>
 <!--CUFON END-->
+<!-- Fetching and displaying live crypto prices -->
+<script>
+  async function fetchCryptoPrices() {
+    const urls = [
+      'https://api.coindesk.com/v1/bpi/currentprice/BTC.json',
+      'https://api.coinbase.com/v2/prices/ETH-USD/spot',
+    ];
+    const requests = urls.map(url => fetch(url));
+    const responses = await Promise.all(requests);
+    const data = await Promise.all(responses.map(res => res.json()));
+    
+    document.getElementById('btc-price').textContent = `BTC: $${data[0].bpi.USD.rate}`;
+    document.getElementById('eth-price').textContent = `ETH: $${data[1].data.amount}`;
+  }
+  
+  fetchCryptoPrices();
+  setInterval(fetchCryptoPrices, 60000); // Update prices every minute
+</script>
+<!-- Fetching and displaying live crypto prices end -->
 </body>
 </html>
